@@ -1,0 +1,21 @@
+label {
+	color: blue;
+}
+
+#menu {
+	float: left;
+	width: 160px;
+	background-color: gray;
+}
+
+#menu ul {
+	list-style-type: none;
+}
+
+#menu ul li a:hover {
+	background-color: white;
+}
+
+#content {
+	margin-left: 170px;
+}
