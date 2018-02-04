@@ -1,0 +1,42 @@
+create database sulproj;
+use sulproj;
+CREATE TABLE Beacon
+(
+BeaconId VARCHAR(100) primary key
+) Engine=InnoDB;
+
+CREATE TABLE BeaconData
+(
+Id INT primary key auto_increment,
+Temp DOUBLE NOT NULL,
+TimeStamp BIGINT UNSIGNED NOT NULL,
+BeaconId VARCHAR(100),
+Url VARCHAR(50),
+Voltage DOUBLE NOT NULL,
+FOREIGN KEY(BeaconId) REFERENCES Beacon(BeaconId)
+ON DELETE RESTRICT ON UPDATE CASCADE
+) Engine=InnoDB;
+
+
+SELECT BeaconData.*, Beacon.* FROM BeaconData INNER JOIN Beacon ON BeaconData.BeaconId=Beacon.BeaconId;
+
+INSERT INTO Beacon (BeaconId) VALUES('f8893b99d382feb066100b40034e0d2e');
+INSERT INTO Beacon (BeaconId) VALUES('b3448fe899a56761d14f3a4a35a73335');
+INSERT INTO Beacon (BeaconId) VALUES('2237fbe66fa7fe58013b4c1986516e2d');
+
+
+INSERT INTO BeaconData (Temp, TimeStamp, BeaconId, Url, Voltage) VALUES(15.5, UNIX_TIMESTAMP(), 'f8893b99d382feb066100b40034e0d2e', 'http://tinyurl.com/nsdpffn', 23);
+INSERT INTO BeaconData (Temp, TimeStamp, BeaconId, Url, Voltage) VALUES(25.1, UNIX_TIMESTAMP(), 'b3448fe899a56761d14f3a4a35a73335', 'http://tinyurl.com/nsdpffn', 65);
+INSERT INTO BeaconData (Temp, TimeStamp, BeaconId, Url, Voltage) VALUES(32.3, UNIX_TIMESTAMP(), '2237fbe66fa7fe58013b4c1986516e2d', 'http://tinyurl.com/nsdpffn', 73);
+
+INSERT INTO BeaconData (Temp, TimeStamp, BeaconId, Url, Voltage) VALUES(15.5, UNIX_TIMESTAMP()+200, 'f8893b99d382feb066100b40034e0d2e', 'http://tinyurl.com/nsdpffn', 1500);
+INSERT INTO BeaconData (Temp, TimeStamp, BeaconId, Url, Voltage) VALUES(16.5, UNIX_TIMESTAMP()+200, 'b3448fe899a56761d14f3a4a35a73335', 'http://tinyurl.com/nsdpffn', 15000);
+INSERT INTO BeaconData (Temp, TimeStamp, BeaconId, Url, Voltage) VALUES(17.5, UNIX_TIMESTAMP()+200, '2237fbe66fa7fe58013b4c1986516e2d', 'http://tinyurl.com/nsdpffn', 65520);
+
+INSERT INTO BeaconData (Temp, TimeStamp, BeaconId, Url, Voltage) VALUES(17.5, UNIX_TIMESTAMP()+400, 'f8893b99d382feb066100b40034e0d2e', 'http://tinyurl.com/nsdpffn', 2000);
+INSERT INTO BeaconData (Temp, TimeStamp, BeaconId, Url, Voltage) VALUES(16.5, UNIX_TIMESTAMP()+400, 'b3448fe899a56761d14f3a4a35a73335', 'http://tinyurl.com/nsdpffn', 30000);
+INSERT INTO BeaconData (Temp, TimeStamp, BeaconId, Url, Voltage) VALUES(15.5, UNIX_TIMESTAMP()+400, '2237fbe66fa7fe58013b4c1986516e2d', 'http://tinyurl.com/nsdpffn', 65010);
+
+INSERT INTO BeaconData (Temp, TimeStamp, BeaconId, Url, Voltage) VALUES(16.5, UNIX_TIMESTAMP()+600, 'f8893b99d382feb066100b40034e0d2e', 'http://tinyurl.com/nsdpffn', 5000);
+INSERT INTO BeaconData (Temp, TimeStamp, BeaconId, Url, Voltage) VALUES(15.5, UNIX_TIMESTAMP()+600, 'b3448fe899a56761d14f3a4a35a73335', 'http://tinyurl.com/nsdpffn', 50000);
+INSERT INTO BeaconData (Temp, TimeStamp, BeaconId, Url, Voltage) VALUES(16.5, UNIX_TIMESTAMP()+600, '2237fbe66fa7fe58013b4c1986516e2d', 'http://tinyurl.com/nsdpffn', 50000);
